@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ticket Tracker Application</title>
+
+<style type="text/css">
+body{
+	margin: 0;
+	font-family: Arial;
+}
+.container {
+	background-color: blue;
+	color: white;
+	overflow: hidden;
+	height: 30px;
+	padding: 10px;
+}
+.container a {
+	color: #f2f2f2;
+	text-align: center;
+	float: inherit;
+	padding: 12px 10px;
+	
+
+}
+table {
+	border-style: solid;
+	border-collapse: collapse;
+}
+
+
+th {
+	color: white;
+	padding: 10px;
+}
+
+thead {
+	text-align: center;
+	color: black;
+	padding: 10px;
+}
+
+.edit {
+	background-color: blue;
+}
+
+#search {
+	background-color: blue;
+	border: 1px;
+	color: white;
+}
+
+.delete {
+	background-color: red;
+}
+
+.view {
+	background-color: aqua;
+}
+
+.list {
+	align-content: left;
+}
+.active{
+background-color: blue;
+}
+.new{
+background-color: blue;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<span>Ticket Tracker Application</span>
+		<a 
+			th:href="@{/admin/tickets}">Tickets</a><a
+			th:href="@{/admin/newTicket}">New Ticket</a>
+
+	</div>
+	<div>
+
+		<div align="center">
+
+			<h1 class="list">List Of Tickets</h1>
+
+			<input type="search" name="search" /> 
+			<button type="button" id="search">Search</button>
+			<br> 
+			<br>
+
+			<table border="1">
+				<thead>
+					<tr style="background-color: rgb(50, 60, 45);">
+						<th>Ticket id</th>
+						<th>Ticket Title</th>
+						<th>Ticket Short Description</th>
+						<th>Created On</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="ticket:${ticketList}">
+						<td th:text="${ticket.slNo}"></td>
+						<td th:text="${ticket.ticketTitle}"></td>
+						<td th:text="${ticket.description}"></td>
+						<td th:text="${ticket.createdOn}"></td>
+						<td><a type="button"
+								th:href="@{/admin/editTicket/{slNo}(slNo=${ticket.slNo})}"><button type="button" class="edit">Edit</button></a>
+							<a type="button" th:href="@{/admin/{slNo}/delete(slNo=${ticket.slNo})}"><button class="delete">Delete</button></a>
+							<a type="button" th:href="@{/admin/{slNo}/view(slNo=${ticket.slNo})}"><button class="view">View</button></a>
+							</td>
+
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

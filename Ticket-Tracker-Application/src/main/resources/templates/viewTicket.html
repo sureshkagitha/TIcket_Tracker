@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ticket Tracker Application</title>
+<style>
+table{
+border-style: solid;
+border-collapse: collapse;
+}
+body{
+margin: 0;
+font-family: Arial;
+}
+.nav-bar {
+	background-color: blue;
+	padding: 10px;
+	color: white;
+	overflow: hidden;
+	height: 30px;
+	
+	
+}
+.nav-bar a {
+	color: #f2f2f2;
+	text-align: center;
+	float: inherit;
+	padding : 12px 10px;
+}
+.active{
+background-color: blue;
+}
+.new{
+background-color: blue;
+}
+th{
+color: white;
+padding: 5px;
+}
+#empty {
+	height: 50px;
+	display: flex;
+}
+</style>
+</head>
+<body>
+<div class="nav-bar">
+		Ticket Tracker Application 
+		<a th:href="@{/admin/tickets}">Tickets</a> 
+		<a th:href="@{/admin/newTicket}">New Ticket</a>
+
+	</div>
+	<div id="empty"></div>
+	<div align="center">
+	<table border="1">
+		<thead>
+			<tr style="background-color: rgb(50, 60, 45);">
+				<th>Ticket id</th>
+				<th>Ticket Title</th>
+				<th>Ticket Short Description</th>
+				<th>Created On</th>
+				<th>Content</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:object="${ticket}">
+				<td th:text="${ticket.slNo}"></td>
+				<td th:text="${ticket.ticketTitle}"></td>
+				<td th:text="${ticket.description}"></td>
+				<td th:text="${ticket.createdOn}"></td>
+				<td th:text="${ticket.content}"></td>
+
+			</tr>
+		</tbody>
+
+	</table>
+	</div>
+
+</body>
+</html>
